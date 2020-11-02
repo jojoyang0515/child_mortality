@@ -1,0 +1,34 @@
+[
+	{
+		"respiratory": "808919",
+		"preterm": "649439",
+		"diarrheal": "533767",
+		"neonatal": "533250",
+		"congenital": "501764",
+		"malaria": "354294",
+		"other": "349002",
+		"sepsis": "203013",
+		"meningitis": "153058",
+		"nutritional": "145073",
+		"cough": "86091",
+		"measles": "83438",
+		"hiv_aids": "77485",
+		"drowning": "59835",
+		"tuberculosis": "57369",
+		
+		
+		
+		
+		"road_injuries": "49067",
+		"digestive_diseases": "40176",
+		"cardiovascular_diseases": "30090",
+		"fire_heat_and_hot_substances": "17200",
+		"hepatitis": "13943",
+		"chronic_kidney_disease": "12979",
+		"interpersonal_violence": "11814",
+		"cirrhosis_and_other_chronic_liver_diseases": "7808",
+		"environmental_heat_and_cold_exposure": "3132",
+		"diabetes_mellitus": "1714",
+		"exposure_to_forces_of_nature": "649"
+	}
+]

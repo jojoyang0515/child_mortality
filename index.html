@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+	<meta name="generator" content="Jekyll v3.8.5">
+	<title>Project 3: Data Storytelling Dashboard</title>
+	<!-- Bootstrap core CSS -->
+	<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/grid/">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<!--font-->
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+	<!--load datatables-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+	<!--style.css-->
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div class="container">
+		<h1>Child and Infant Mortality</h1>
+		<p class="credit">BY <a href="http://brojust.com/" class="portfolio">JOJO YANG </a>NOVEMBER 1 2020</p>
+		<!--Chart 1: Map of Infant Mortality Rates-->
+		<div class="map">
+			<h2>Infant Mortality Rates Around the World</h2>
+			<p>Infant and child mortality rates reflect the economic, social, and environmental conditions and the quality of a country’s health system. Infant mortality is death among children who are not yet one year of age, and infant mortality rate (IMR) is the proportion of infant deaths per 1,000 live births in a given year. Developed and high-income countries have a lower IMR than in developing and low-income countries. In 2019, the average IMR of all reported countries was 28.2 deaths per 1,000 live births. San Marino has the lowest IMR of 1.5 deaths per 1,000 live births, while Central African Republic has the highest IMR of 81 deaths per 1,000 live births. </p>
+			<div id="container"></div>
+		</div>
+		<!--Chart 2: History of Infant Mortality Rates-->
+		<div class="chart1">
+			<h2>Infant Mortality Rate</h2>
+			<p>Infant mortality has decreased significantly throughout history. In 1990, IMR of all reported countries was 64.5 deaths per 1,000 live births. The deaths have decreased by 56% in 2019, which the IMR is 28.2 deaths per 1,000 live births. Maldives has the greatest decrease in IMR from 63 deaths per 1,000 live births in 1990 to 6.5 deaths per 1,000 live births in 2019 (↓ 90%). On the contrary, <a href="https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(19)30344-4/fulltext#:~:text=Dominica%20is%20the%20only%20country,past%2015%20years%20and%20counting.&text=Probability%20of%20dying%20in%20the,in%20this%20same%20time%20period." class="links"> Dominica</a> is the only country in recorded history that has a sharp increase in IMR. In 1990, IMR in Dominica was 12.9 deaths per 1,000 live births and had increased to 30.9 deaths per 1,000 live births in 2020 (↑ 140%)</p>
+			<h4>Infant Mortality Rate in World Regions (1990-2019)</h4>
+			<div id="container2"></div>
+		</div>
+		<!--Chart 3: History of Child Mortality Rates-->
+		<div class="chart2">
+			<h2>Child Mortality Rates</h2>
+			<p>Child mortality refers to the death of a child under the age of five. Child mortality, also known as the 'under-five mortality rate,' is the probability per 1,000 live births that a newborn baby will die before reaching age five. Decreasing child mortality rates is one of the 17 Sustainable Development Goal established by the United Nations, in which all countries are aiming to reduce the child mortality rate to as low as 25 deaths per 1,000 live births by 2030. Maldives and Dominica also mark the greatest increase and decrease in child mortality rate. Maldive had a decrease of 91% in child mortality from 85.8 deaths per 1,000 live births to 7.6 deaths per 1,000 live births. Dominica saw an increase of 110% from 16.5 deaths per 1,000 live births in 1990 to 34.7 deaths per 1,000 live births in 2019.</p>
+			<h4>Child Mortality Rate in World Regions (1990-2019)</h4>
+			<div id="container3"></div>
+		</div>
+		<!--Chart 4: Leading Causes of Child Mortality Rates-->
+		<div class="chart3">
+			<h2>Causes of Child Mortality</h2>
+			<p>Many causes of child mortality have seen a decrease in the number of cases over the years. In 1990, lower respiratory infections, including pneumonia, bronchitis, and tuberculosis, account for the lives of 2.34 million children. While lower respiratory infections are still the leading cause of child mortality, the number of deaths per year has decreased to 808,919 deaths in 2019. Other leading causes of deaths include neonatal preterm birth complications (premature births), diarrheal diseases, birth asphyxia and trauma, and congenital disorders.</p>
+			<h4>Top 10 Causes of Child Mortality in 2019</h4>
+			<div id="container4"></div>
+		</div>
+	</div>
+
+	<div class="container alldatatable">
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#infant" class="tabletabs">Infant Mortality Rate</a></li>
+			<li><a data-toggle="tab" href="#child" class="tabletabs">Child Mortality Rate</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="infant" class="tab-pane in active">
+				<h4 class="text-center">Infant Mortality Rates Around the World (1990-2019)</h4>
+				<table id="myTable" class="display">
+					<thead>
+						<tr>
+							<th>Country Name</th>
+							<th>1990</th>
+							<th>1991</th>
+							<th>1992</th>
+							<th>1993</th>
+							<th>1994</th>
+							<th>1995</th>
+							<th>1996</th>
+							<th>1997</th>
+							<th>1998</th>
+							<th>1999</th>
+							<th>2000</th>
+							<th>2001</th>
+							<th>2002</th>
+							<th>2003</th>
+							<th>2004</th>
+							<th>2005</th>
+							<th>2006</th>
+							<th>2007</th>
+							<th>2008</th>
+							<th>2009</th>
+							<th>2010</th>
+							<th>2011</th>
+							<th>2012</th>
+							<th>2013</th>
+							<th>2014</th>
+							<th>2015</th>
+							<th>2016</th>
+							<th>2017</th>
+							<th>2018</th>
+							<th>2019</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Country/Region/Organization</th>
+							<th>1990</th>
+							<th>1991</th>
+							<th>1992</th>
+							<th>1993</th>
+							<th>1994</th>
+							<th>1995</th>
+							<th>1996</th>
+							<th>1997</th>
+							<th>1998</th>
+							<th>1999</th>
+							<th>2000</th>
+							<th>2001</th>
+							<th>2002</th>
+							<th>2003</th>
+							<th>2004</th>
+							<th>2005</th>
+							<th>2006</th>
+							<th>2007</th>
+							<th>2008</th>
+							<th>2009</th>
+							<th>2010</th>
+							<th>2011</th>
+							<th>2012</th>
+							<th>2013</th>
+							<th>2014</th>
+							<th>2015</th>
+							<th>2016</th>
+							<th>2017</th>
+							<th>2018</th>
+							<th>2019</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div id="child" class="tab-pane">
+				<h4 class="text-center">Child Mortality Rates Around the World (1990-2019)</h4>
+				<table id="myTable2" class="display">
+					<thead>
+						<tr>
+							<th>Country Name</th>
+							<th>1990</th>
+							<th>1991</th>
+							<th>1992</th>
+							<th>1993</th>
+							<th>1994</th>
+							<th>1995</th>
+							<th>1996</th>
+							<th>1997</th>
+							<th>1998</th>
+							<th>1999</th>
+							<th>2000</th>
+							<th>2001</th>
+							<th>2002</th>
+							<th>2003</th>
+							<th>2004</th>
+							<th>2005</th>
+							<th>2006</th>
+							<th>2007</th>
+							<th>2008</th>
+							<th>2009</th>
+							<th>2010</th>
+							<th>2011</th>
+							<th>2012</th>
+							<th>2013</th>
+							<th>2014</th>
+							<th>2015</th>
+							<th>2016</th>
+							<th>2017</th>
+							<th>2018</th>
+							<th>2019</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Country/Region/Organization</th>
+							<th>1990</th>
+							<th>1991</th>
+							<th>1992</th>
+							<th>1993</th>
+							<th>1994</th>
+							<th>1995</th>
+							<th>1996</th>
+							<th>1997</th>
+							<th>1998</th>
+							<th>1999</th>
+							<th>2000</th>
+							<th>2001</th>
+							<th>2002</th>
+							<th>2003</th>
+							<th>2004</th>
+							<th>2005</th>
+							<th>2006</th>
+							<th>2007</th>
+							<th>2008</th>
+							<th>2009</th>
+							<th>2010</th>
+							<th>2011</th>
+							<th>2012</th>
+							<th>2013</th>
+							<th>2014</th>
+							<th>2015</th>
+							<th>2016</th>
+							<th>2017</th>
+							<th>2018</th>
+							<th>2019</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="row">
+			<div class="col-4">
+				<ul>
+					<li class="reference">Charts and tables created using <a rhef=www.highcharts.com class="referencelist">Highcharts </a> and <a rhef="https://datatables.net/" class="referencelist">DataTables</a></li>
+					<li class="reference"><a href="https://data.worldbank.org/indicator/SP.DYN.IMRT.IN">Infant Mortality - World Bank</a></li>
+					<li class="reference"> <a href="https://data.worldbank.org/indicator/SH.DYN.MORT">Child Mortality - World Bank</li>
+					<li class="reference"><a href="https://ourworldindata.org/child-mortality">Child Mortality - Our World in Data</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+</body>
+
+
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--table-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<!--load highchart-->
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+	<script src="http://code.highcharts.com/stock/highstock.js"></script>
+
+<!--load script.js-->
+<script src="js/script.js"></script></html>
