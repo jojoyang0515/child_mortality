@@ -1,4 +1,4 @@
-//infant mortality region
+//chart 2
 var world = [];
 var east_asia_pacific = [];
 var europe = [];
@@ -8,7 +8,7 @@ var north_america = [];
 var south_asia = [];
 var sub_saharan = [];
 
-//child mortality region
+//chart 3
 var child_world = [];
 var child_east_asia_pacific = [];
 var child_europe = [];
@@ -18,7 +18,7 @@ var child_north_america = [];
 var child_south_asia = [];
 var child_sub_africa = [];
 
-//child mortality causes
+//chart 4
 var respiratory = [];
 var preterm = [];
 var diarrheal = [];
@@ -35,6 +35,10 @@ var hiv_aids = [];
 var drowning = [];
 var tuberculosis = [];
 
+//chart 5
+var expectation = [];
+var reality = [];
+
 //load data...
 $(document).ready(function () {
 	loadData();
@@ -43,28 +47,34 @@ $(document).ready(function () {
 function loadData() {
 	/*map 1 data from https://docs.google.com/spreadsheets/d/1CMnm7UAKIdCvE0MIZbXAd09O58kmzuJOSTW7tZivLOI/pubhtml*/
 
-	//for chart 2
+	//chart 2
 	$.getJSON("data/InfantMortalityByRegions.json", function (data) {
 		console.log(data);
 		parseData(data);
 	});
 
-	//for chart 3
+	//chart 3
 	$.getJSON("data/CausesOfChildMortality.json", function (data) {
 		console.log(data);
 		parseData2(data);
 	});
 
-	//for chart 4
+	//chart 4
 	$.getJSON("data/ChildMortalityByRegions.json", function (data) {
 		console.log(data);
 		parseData3(data);
+	});
+
+	//chart 5
+	$.getJSON("data/childmortalityprojection.json", function (data) {
+		console.log(data);
+		parseData4(data);
 	});
 }
 
 //parse data
 
-//infant mortality region parsing...
+//chart 2 parsing...
 function parseData(data) {
 	for (var i = 0; i < data.length; i++) {
 		world.push(Number(data[i].world));
@@ -79,7 +89,7 @@ function parseData(data) {
 	createCharts();
 }
 
-//child mortality region parsing...
+//chart 3 parsing...
 function parseData2(data) {
 	for (var n = 0; n < data.length; n++) {
 		respiratory.push(Number(data[n].respiratory));
@@ -101,7 +111,7 @@ function parseData2(data) {
 	createCharts();
 }
 
-//child mortality causes parsing...
+//chart 4 parsing...
 function parseData3(data) {
 	for (var m = 0; m < data.length; m++) {
 		child_world.push(Number(data[m].child_world));
@@ -116,9 +126,18 @@ function parseData3(data) {
 	createCharts();
 }
 
+//chart 5 parsing...
+function parseData4(data) {
+	for (var m = 0; m < data.length; m++) {
+		expectation.push(Number(data[m].expectation));
+		reality.push(Number(data[m].reality));
+	}
+	createCharts();
+}
+
 //create charts
 function createCharts() {
-	//https://docs.google.com/spreadsheets/d/1CMnm7UAKIdCvE0MIZbXAd09O58kmzuJOSTW7tZivLOI/pubhtml*
+	/*map 1 https://docs.google.com/spreadsheets/d/1CMnm7UAKIdCvE0MIZbXAd09O58kmzuJOSTW7tZivLOI/pubhtml */
 	Highcharts.data({
 		googleSpreadsheetKey: '1CMnm7UAKIdCvE0MIZbXAd09O58kmzuJOSTW7tZivLOI',
 		parsed: function (columns) {
@@ -131,8 +150,6 @@ function createCharts() {
 					name: columns[1][i]
 				});
 			});
-
-			//map 1
 			Highcharts.mapChart('container', {
 				chart: {
 					map: 'custom/world',
@@ -224,7 +241,7 @@ function createCharts() {
 		}
 	});
 
-	//infant mortality region
+	//chart 2
 	Highcharts.chart('container2', {
 		chart: {
 			height: 500, //resize chart
@@ -285,11 +302,11 @@ function createCharts() {
 			name: "Middle East & North Africa",
 			color: '#52B788',
 			data: middle_east,
-		},{
+		}, {
 			name: "Latin America & Caribbean",
 			color: '#95D5B2',
 			data: latin,
-		},{
+		}, {
 			name: "East Asia & Pacific",
 			color: '#74C69D',
 			data: east_asia_pacific,
@@ -369,33 +386,32 @@ function createCharts() {
 			name: "Sub-Saharan Africa",
 			color: '#2D6A4F',
 			data: child_sub_africa
-		},{
+		}, {
 			name: "South Asia",
 			color: '#40916C',
 			data: child_south_asia,
-		},{
+		}, {
 			name: "World",
 			color: '#608CAA',
 			lineWidth: 3,
-			linecap: 'square',
 			data: child_world,
-		},{
+		}, {
 			name: "Middle East & North Africa",
 			color: '#52B788',
 			data: child_middle_east,
-		},{
+		}, {
 			name: "Latin America & Caribbean",
 			color: '#95D5B2',
 			data: child_latin,
-		},{
+		}, {
 			name: "East Asia & Pacific",
 			color: '#74C69D',
 			data: child_east_asia_pacific,
-		},{
+		}, {
 			name: "Europe & Central Asia",
 			color: '#B7E4C7',
 			data: child_europe,
-		},{
+		}, {
 			name: "North America",
 			color: '#D8F3DC',
 			data: child_north_america,
@@ -443,21 +459,17 @@ function createCharts() {
 			text: ''
 		},
 		xAxis: {
-			categories: ['Lower Respiratory Infections', 
-						 'Neonatal Preterm Birth Complications', 
-						 'Diarrheal Diseases', 'Birth Asphyxia and Trauma', 
-						 'Congenital Birth Defects', 
-						 'Malaria', 
-						 'Other Neonatal Disorders', 
-						 'Neonatal Infections', 
-						 'Meningitis', 
-						 'Nutritional Deficiencies'
+			categories: ['Lower Respiratory Infections', 'Neonatal Preterm Birth Complications', 'Diarrheal Diseases', 'Birth Asphyxia and Trauma', 'Congenital Birth Defects', 'Malaria', 'Other Neonatal Disorders', 'Neonatal Infections', 'Meningitis', 'Nutritional Deficiencies'
 						],
 		},
 		yAxis: {
+			title: {
+				text: '',
+				align: 'high'
+			},
 			min: 0,
 			labels: {
-				enabled: false
+				enabled: false,
 			},
 			gridLineWidth: 0, //no gridlines
 		},
@@ -482,6 +494,73 @@ function createCharts() {
 			color: '#52B788' //change colors of bars
     }]
 	});
+
+	//child mortality projections
+	Highcharts.chart('container5', {
+		chart: {
+			height: 400, //resize chart
+			style: {
+				font: '12px "Poppins", sans-serif'
+			},
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			crosshair: {
+				enabled: true
+			},
+			categories: ['2015', '2030']
+		},
+		yAxis: {
+			title: {
+				text: 'Million Deaths'
+			},
+			resize: {
+				enabled: true
+			}
+		},
+		legend: {
+			enabled: true,
+			layout: 'horizontal',
+			align: 'right',
+			verticalAlign: 'bottom',
+			borderWidth: 1
+		},
+		plotOptions: {
+			series: {
+				marker: {
+					symbol: 'circle'
+				}
+			}
+		},
+		tooltip: {
+			valueSuffix: ' millions deaths per year'
+		},
+		series: [{
+			name: "United Nations Projection",
+			color: '#2D6A4F',
+			data: reality
+		}, {
+			name: "Achieving the Sustainable Goal",
+			color: '#52B788',
+			data: expectation
+		}],
+		responsive: {
+			rules: [{
+				condition: {
+					maxWidth: 500
+				},
+				chartOptions: {
+					legend: {
+						align: 'center',
+						verticalAlign: 'bottom',
+						layout: 'horizontal'
+					}
+				}
+        }]
+		}
+	});
 }
 
 //infant mortality table
@@ -492,70 +571,37 @@ $('#myTable').DataTable({
 		dataSrc: ''
 	},
 	columns: [
-		{
-			data: 'Country Name'
-			}, {
-			data: '1990'
-			}, {
-			data: '1991'
-			}, {
-			data: '1992'
-			}, {
-			data: '1993'
-			}, {
-			data: '1994'
-			}, {
-			data: '1995'
-			}, {
-			data: '1996'
-			}, {
-			data: '1997'
-			}, {
-			data: '1998'
-			}, {
-			data: '1999'
-			}, {
-			data: '2000'
-			}, {
-			data: '2001'
-			}, {
-			data: '2002'
-			}, {
-			data: '2003'
-			}, {
-			data: '2004'
-			}, {
-			data: '2005'
-			}, {
-			data: '2006'
-			}, {
-			data: '2007'
-			}, {
-			data: '2008'
-			}, {
-			data: '2009'
-			}, {
-			data: '2010'
-			}, {
-			data: '2011'
-			}, {
-			data: '2012'
-			}, {
-			data: '2013'
-			}, {
-			data: '2014'
-			}, {
-			data: '2015'
-			}, {
-			data: '2016'
-			}, {
-			data: '2017'
-			}, {
-			data: '2018'
-			}, {
-			data: '2019'
-			}
-
+		{data: 'Country Name'}, 
+		{data: '1990'}, 
+		{data: '1991'}, 
+		{data: '1992'}, 
+		{data: '1993'}, 
+		{data: '1994'}, 
+		{data: '1995'}, 
+		{data: '1996'}, 
+		{data: '1997'}, 
+		{data: '1998'}, 
+		{data: '1999'}, 
+		{data: '2000'}, 
+		{data: '2001'}, 
+		{data: '2002'}, 
+		{data: '2003'},
+		{data: '2004'}, 
+		{data: '2005'}, 
+		{data: '2006'},
+		{data: '2007'}, 
+		{data: '2008'}, 
+		{data: '2009'}, 
+		{data: '2010'}, 
+		{data: '2011'}, 
+		{data: '2012'}, 
+		{data: '2013'}, 
+		{data: '2014'}, 
+		{data: '2015'}, 
+		{data: '2016'}, 
+		{data: '2017'},
+		{data: '2018'}, 
+		{data: '2019'}
 		]
 });
 
@@ -567,69 +613,36 @@ $('#myTable2').DataTable({
 		dataSrc: ''
 	},
 	columns: [
-		{
-			data: 'Country Name'
-			}, {
-			data: '1990'
-			}, {
-			data: '1991'
-			}, {
-			data: '1992'
-			}, {
-			data: '1993'
-			}, {
-			data: '1994'
-			}, {
-			data: '1995'
-			}, {
-			data: '1996'
-			}, {
-			data: '1997'
-			}, {
-			data: '1998'
-			}, {
-			data: '1999'
-			}, {
-			data: '2000'
-			}, {
-			data: '2001'
-			}, {
-			data: '2002'
-			}, {
-			data: '2003'
-			}, {
-			data: '2004'
-			}, {
-			data: '2005'
-			}, {
-			data: '2006'
-			}, {
-			data: '2007'
-			}, {
-			data: '2008'
-			}, {
-			data: '2009'
-			}, {
-			data: '2010'
-			}, {
-			data: '2011'
-			}, {
-			data: '2012'
-			}, {
-			data: '2013'
-			}, {
-			data: '2014'
-			}, {
-			data: '2015'
-			}, {
-			data: '2016'
-			}, {
-			data: '2017'
-			}, {
-			data: '2018'
-			}, {
-			data: '2019'
-			}
-
+		{data: 'Country Name'}, 
+		{data: '1990'}, 
+		{data: '1991'}, 
+		{data: '1992'}, 
+		{data: '1993'}, 
+		{data: '1994'}, 
+		{data: '1995'}, 
+		{data: '1996'}, 
+		{data: '1997'}, 
+		{data: '1998'}, 
+		{data: '1999'}, 
+		{data: '2000'}, 
+		{data: '2001'}, 
+		{data: '2002'}, 
+		{data: '2003'},
+		{data: '2004'}, 
+		{data: '2005'}, 
+		{data: '2006'},
+		{data: '2007'}, 
+		{data: '2008'}, 
+		{data: '2009'}, 
+		{data: '2010'}, 
+		{data: '2011'}, 
+		{data: '2012'}, 
+		{data: '2013'}, 
+		{data: '2014'}, 
+		{data: '2015'}, 
+		{data: '2016'}, 
+		{data: '2017'},
+		{data: '2018'}, 
+		{data: '2019'}
 		]
 });
